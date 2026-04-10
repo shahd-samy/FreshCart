@@ -1,0 +1,1 @@
+# TODO: Convert RatingSkeleton to proper skeleton loading\n\n- [ ] Step 1: Create/edit RatingSkeleton.jsx with skeleton UI using animate-pulse and placeholder bars mimicking 5 stars\n- [ ] Step 2: Verify the change\n- [ ] Step 3: Complete task and report alteration message
