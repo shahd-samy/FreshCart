@@ -9,13 +9,13 @@ import "react-image-gallery/styles/image-gallery.css";
 import { useContext } from "react";
 import { CartContext } from "../../context/Cart.context";
 import { WishListContext } from "../../context/WishList.context";
-
-
+import {useNavigate} from "react-router"
 export default function ProductInfo({ productInfo }) {
 
   console.log(productInfo)
   const { cart, HandleAddingToCart, HandleRemoveCartItem,HandleUpdateCartProductQuantity } = useContext(CartContext);
     const{HandleAddingToWishList,HandleRemoveWishListItem,wishlist}=useContext(WishListContext);
+const navigate = useNavigate()
 
   const images =
     productInfo?.images?.map((img) => ({
@@ -136,7 +136,12 @@ console.log(cartItem)
 
 
 
-            <button className="border border-gray-400 text-gray-500 hover:bg-gray-400 hover:text-white p-3 transition rounded-lg flex-1">
+            <button  onClick={() => {
+    if (!isInCart) {
+      HandleAddingToCart(productInfo._id);
+    }
+    navigate("/orders");
+  }} className="border border-gray-400 text-gray-500 hover:bg-gray-400 hover:text-white p-3 transition rounded-lg flex-1">
               BUY NOW
             </button>
           </div>

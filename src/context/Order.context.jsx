@@ -12,7 +12,7 @@ export default function OrderProvider({ children }) {
     const [error, setError] = useState(null)
     const [orders, setOrders] = useState([])
     const userInfo = JSON.parse(localStorage.getItem('userinfo'))
-  const{token}=useContext(AuthContext);
+  const{token}=localStorage.getItem('token')||sessionStorage.getItem('token');
 
 
     async function HandlegettingUserOrders(userId) {
