@@ -90,9 +90,46 @@ export default function SignUp() {
     name: yup.string().required("Name is required"),
     email: yup.string().required("Email is required").email("Email is invalid"),
     phone: yup.string().required("Phone number is required").matches(phoneRegex, 'invalid phone'),
-    password: yup.string().required("Password is required").matches(passRegex, 'password should be at least 8 chars'),
     rePassword: yup.string().required("rePassword is required").oneOf([yup.ref('password')], 'passwords should be the same'),
-    terms: yup.boolean().oneOf([true], 'you should agree on terms')
+    terms: yup.boolean().oneOf([true], 'you should agree on terms'),
+   password: yup
+  .string()
+  .required("Password is required")
+  .test("password-strength", function (value) {
+    if (!value) return this.createError({ message: "Password is required" });
+
+    if (value.length < 8) {
+      return this.createError({
+        message: "Password must be at least 8 characters",
+      });
+    }
+
+    if (!/[A-Z]/.test(value)) {
+      return this.createError({
+        message: "Add at least 1 uppercase letter",
+      });
+    }
+
+    if (!/[a-z]/.test(value)) {
+      return this.createError({
+        message: "Add at least 1 lowercase letter",
+      });
+    }
+
+    if (!/[0-9]/.test(value)) {
+      return this.createError({
+        message: "Add at least 1 number",
+      });
+    }
+
+    if (!/[!@#$%^&*()?]/.test(value)) {
+      return this.createError({
+        message: "Add at least 1 special character",
+      });
+    }
+
+    return true;
+  }),
 
   })
 
