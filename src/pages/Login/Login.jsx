@@ -162,7 +162,7 @@ export default function Login() {
                 <div className='absolute -top-1 right-6 w-3 h-3 bg-red-200 border-l border-t border-gray-200 rotate-45'></div>
 
                 <p className='text-xs text-red-900 text-start leading-relaxed'>
-                  Social sign-in authenticates with Google, then we connect that account to our backend so orders, cart, and protected features work.
+                  Google sign-in is currently limited. Please use email login for full access.
                 </p>
               </div>
               {/* <button onClick={handleFacebookLogin} className='border border-gray-300 text-gray-600 px-5 py-2 rounded-md shadow-sm hover:bg-gray-200 transition-colors duration-200 w-full'>
