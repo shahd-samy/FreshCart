@@ -26,7 +26,7 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
             }
 
         } catch (error) {
-            console.log(error, 'add context')
+            // console.log(error, 'add context')
             setError(error)
             setIsLoading(false)
 
@@ -52,7 +52,7 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
         } catch (error) {
             setIsLoading(false)
 
-            console.log(error, 'get context')
+            // console.log(error, 'get context')
         }
     }
 
@@ -70,7 +70,7 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
             }
 
         } catch (error) {
-            console.log(error, 'remve contxt')
+            // console.log(error, 'remve contxt')
         }
     }
 

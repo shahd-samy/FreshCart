@@ -11,7 +11,7 @@ import { apiclient } from "./api-client";
             }
 
             const data  = await apiclient.request(options);
-             console.log(data,'serv orders')
+            //  console.log(data,'serv orders')
             return(data)
 
         } catch (error) {

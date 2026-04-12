@@ -12,21 +12,21 @@ export default function OrderProvider({ children }) {
     const [error, setError] = useState(null)
     const [orders, setOrders] = useState([])
     const userInfo = JSON.parse(localStorage.getItem('userinfo'))
-  const{token}=localStorage.getItem('token')||sessionStorage.getItem('token');
+  const token=localStorage.getItem('token')||sessionStorage.getItem('token');
 
 
     async function HandlegettingUserOrders(userId) {
         try {
             const response = await getUserOrders(userId);
             if (response.success) {
-                console.log(response, 'ordercontext')
+                // console.log(response, 'ordercontext')
                 setOrders(response.data)
                 setLoading(false)
 
             }
 
         } catch (error) {
-            console.log(error, 'order context')
+            // console.log(error, 'order context')
             setError(error)
             setLoading(false)
 

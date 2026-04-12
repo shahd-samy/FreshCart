@@ -12,7 +12,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-console.log(import.meta.env.VITE_FIREBASE_API_KEY);
+// console.log(import.meta.env.VITE_FIREBASE_API_KEY);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const facebookProvider = new FacebookAuthProvider();

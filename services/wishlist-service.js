@@ -13,7 +13,7 @@ export default async function AddToWishlist(productId) {
         }
 
         const response = await apiclient.request(options);
-        console.log(response, 'add serv')
+        // console.log(response, 'add serv')
 
         return response
 
@@ -51,7 +51,7 @@ export async function RemoveWishlistItem(productId) {
         }
 
         const response = await apiclient.request(options);
-        console.log(response, 'rmmmve sercv')
+        // console.log(response, 'rmmmve sercv')
         return response
 
     } catch (error) {

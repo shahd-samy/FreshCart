@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useState            // console.log(response,'add context')
- } from "react";
+import {
+    createContext, useContext, useEffect, useState            // console.log(response,'add context')
+} from "react";
 import AddToCart, { ClearCart, GetUserCart, RemoveCartItem, UpdateCartProductQuantity } from "../../services/cart-service";
 import { toast } from "react-toastify";
 import { AuthContext } from "./Auth.context";
@@ -11,7 +12,7 @@ export default function CartProvider({ children }) {
     const [cart, setCart] = useState(null);
     const [loading, setIsLoading] = useState(true);
     const [error, setError] = useState(null)
-const token=localStorage.getItem('token') || sessionStorage.getItem('token');
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
 
     async function HandleAddingToCart(productId) {
         try {
@@ -25,7 +26,7 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
             }
 
         } catch (error) {
-            console.log(error,'add context')
+            // console.log(error,'add context')
             setError(error)
             setIsLoading(false)
 
@@ -49,9 +50,9 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
             }
 
         } catch (error) {
-                            setIsLoading(false)
+            setIsLoading(false)
 
-            console.log(error,'get context')
+            // console.log(error, 'get context')
         }
     }
 
@@ -69,14 +70,14 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
             }
 
         } catch (error) {
-            console.log(error,'remve contxt')
+            console.log(error, 'remve contxt')
         }
     }
 
     async function HandleUpdateCartProductQuantity(productId, count) {
         try {
             setIsLoading(true)
-            console.log(productId,count)
+            // console.log(productId,count)
             const response = await UpdateCartProductQuantity(productId, count);
             // console.log(response, 'update context')
             if (response.success) {
@@ -87,7 +88,7 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
             }
 
         } catch (error) {
-            console.log(error ,'update context')
+            console.log(error, 'update context')
             setIsLoading(false)
 
         }
@@ -109,7 +110,7 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
             }
 
         } catch (error) {
-            console.log(error,'clear context')
+            console.log(error, 'clear context')
         }
     }
 
@@ -119,7 +120,7 @@ const token=localStorage.getItem('token') || sessionStorage.getItem('token');
     }, [token])
 
 
-    return <CartContext.Provider value={{ cart,setCart, loading, error, HandleAddingToCart, HandleGetUserCart, HandleClearCart, HandleRemoveCartItem, HandleUpdateCartProductQuantity }}>
+    return <CartContext.Provider value={{ cart, setCart, loading, error, HandleAddingToCart, HandleGetUserCart, HandleClearCart, HandleRemoveCartItem, HandleUpdateCartProductQuantity }}>
         {children}
     </CartContext.Provider>
 

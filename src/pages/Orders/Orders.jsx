@@ -10,7 +10,7 @@ import PageMetadata from "../../components/PageMetadata/PageMetadata";
 export default function Orders() {
 
 
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  const userInfo = JSON.parse(localStorage.getItem('userinfo'))
 
   const { orders, loading } = useContext(OrderContext)
   console.log(orders)

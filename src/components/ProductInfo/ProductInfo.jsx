@@ -9,13 +9,13 @@ import "react-image-gallery/styles/image-gallery.css";
 import { useContext } from "react";
 import { CartContext } from "../../context/Cart.context";
 import { WishListContext } from "../../context/WishList.context";
-import {useNavigate} from "react-router"
+import { useNavigate } from "react-router"
 export default function ProductInfo({ productInfo }) {
 
   console.log(productInfo)
-  const { cart, HandleAddingToCart, HandleRemoveCartItem,HandleUpdateCartProductQuantity } = useContext(CartContext);
-    const{HandleAddingToWishList,HandleRemoveWishListItem,wishlist}=useContext(WishListContext);
-const navigate = useNavigate()
+  const { cart, HandleAddingToCart, HandleRemoveCartItem, HandleUpdateCartProductQuantity } = useContext(CartContext);
+  const { HandleAddingToWishList, HandleRemoveWishListItem, wishlist } = useContext(WishListContext);
+  const navigate = useNavigate()
 
   const images =
     productInfo?.images?.map((img) => ({
@@ -23,20 +23,20 @@ const navigate = useNavigate()
       thumbnail: img,
     })) || [];
 
- 
-  const isInCart = cart?.products.some((item) =>
+
+  const isInCart = cart?.products?.some((item) =>
     (item.product._id == productInfo._id)
   )
-const cartItem = cart?.products.find(
-  (item) => item.product._id === productInfo._id
-);
+  const cartItem = cart?.products?.find(
+    (item) => item.product._id === productInfo._id
+  );
 
- const isInWishList = wishlist?.some((item)=>
-                   (item._id == productInfo._id)
- 
-            )
-                
-console.log(cartItem)
+  const isInWishList = wishlist?.some((item) =>
+    (item._id == productInfo._id)
+
+  )
+
+  console.log(cartItem)
   return (
     <>
 
@@ -70,8 +70,8 @@ console.log(cartItem)
                 <FontAwesomeIcon icon={faShareNodes} className="text-gray-400 hover:text-black cursor-pointer" />
               </li>
               <li>
-                <FontAwesomeIcon icon={faHeart} onClick={()=>{ (isInWishList)?HandleRemoveWishListItem(productInfo._id):HandleAddingToWishList(productInfo._id)}}
-                                  className={`${isInWishList ? 'text-red-600 ':'text-gray-400'} cursor-pointer`}/>
+                <FontAwesomeIcon icon={faHeart} onClick={() => { (isInWishList) ? HandleRemoveWishListItem(productInfo._id) : HandleAddingToWishList(productInfo._id) }}
+                  className={`${isInWishList ? 'text-red-600 ' : 'text-gray-400'} cursor-pointer`} />
               </li>
             </ul>
           </div>
@@ -102,20 +102,22 @@ console.log(cartItem)
             <span className="font-medium">Quantity:</span>
 
             <div className="border border-gray-300 px-3 py-1 flex items-center gap-4 rounded">
-              <button onClick={() => { 
-                 HandleUpdateCartProductQuantity(productInfo._id, cartItem?.count - 1)}} className="text-lg">-</button>
-              <span>{cartItem?.count||0}</span>
+              <button onClick={() => {
+                HandleUpdateCartProductQuantity(productInfo._id, cartItem?.count - 1)
+              }} className="text-lg">-</button>
+              <span>{cartItem?.count || 0}</span>
               <button onClick={() => {
                 if (!cartItem) {
-      
-      HandleAddingToCart(productInfo._id);
-    } else {
-    
-      HandleUpdateCartProductQuantity(
-        productInfo._id,
-        cartItem?.count + 1
-      );
-              }}} className="text-lg">+</button>
+
+                  HandleAddingToCart(productInfo._id);
+                } else {
+
+                  HandleUpdateCartProductQuantity(
+                    productInfo._id,
+                    cartItem?.count + 1
+                  );
+                }
+              }} className="text-lg">+</button>
             </div>
 
             <span className="text-sm text-gray-500">
@@ -136,12 +138,12 @@ console.log(cartItem)
 
 
 
-            <button  onClick={() => {
-    if (!isInCart) {
-      HandleAddingToCart(productInfo._id);
-    }
-    navigate("/orders");
-  }} className="border border-gray-400 text-gray-500 hover:bg-gray-400 hover:text-white p-3 transition rounded-lg flex-1">
+            <button onClick={() => {
+              if (!isInCart) {
+                HandleAddingToCart(productInfo._id);
+              }
+              navigate("/orders");
+            }} className="border border-gray-400 text-gray-500 hover:bg-gray-400 hover:text-white p-3 transition rounded-lg flex-1">
               BUY NOW
             </button>
           </div>
