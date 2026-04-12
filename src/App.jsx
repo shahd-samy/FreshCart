@@ -1,27 +1,31 @@
 import { createBrowserRouter, RouterProvider } from "react-router"
 import Layout from "./pages/Layout/Layout"
-import Home from "./pages/Home/Home"
-import Login from "./pages/Login/Login"
-import WishList from './pages/WishList/WishList';
-import SignUp from './pages/SignUp/SignUp';
-import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
-import VerifyEmail from "./pages/VerifyEmail/VerifyEmail";
-import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import Carts from "./pages/Carts/Carts";
-import Orders from "./pages/Orders/Orders";
-import Logout from "./pages/Logout/Logout";
 import { ToastContainer } from "react-toastify";
 import ProductProvider from "./context/Products.context";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AuthProvider from "./context/Auth.context";
 import CartProvider from "./context/Cart.context";
-import Checkout from "./pages/Checkout/Checkout";
 import WishListProvider from "./context/WishList.context";
-import Products from "./pages/Products/Products";
 import OrderProvider from "./context/Order.context";
-import OrderDetail from './pages/OrderDetail/OrderDetail';
 import NotFound from "./pages/NotFound/NotFound";
 import OfflineScreen from "./pages/OfflineScreen/OfflineScreen";
+import { Suspense, lazy } from "react";
+import Loading from "./components/Loading/Loading";
+
+// Lazy load components
+const Home = lazy(() => import("./pages/Home/Home"));
+const Login = lazy(() => import("./pages/Login/Login"));
+const WishList = lazy(() => import('./pages/WishList/WishList'));
+const SignUp = lazy(() => import('./pages/SignUp/SignUp'));
+const ForgetPassword = lazy(() => import("./pages/ForgetPassword/ForgetPassword"));
+const VerifyEmail = lazy(() => import("./pages/VerifyEmail/VerifyEmail"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails/ProductDetails"));
+const Carts = lazy(() => import("./pages/Carts/Carts"));
+const Orders = lazy(() => import("./pages/Orders/Orders"));
+const Logout = lazy(() => import("./pages/Logout/Logout"));
+const Checkout = lazy(() => import("./pages/Checkout/Checkout"));
+const Products = lazy(() => import("./pages/Products/Products"));
+const OrderDetail = lazy(() => import('./pages/OrderDetail/OrderDetail'));
 
 
 
@@ -65,7 +69,9 @@ function App() {
               <OrderProvider>
 
 
-                <RouterProvider router={routes} ></RouterProvider>
+                <Suspense fallback={<Loading />}>
+                  <RouterProvider router={routes} ></RouterProvider>
+                </Suspense>
                 <ToastContainer position="top-right" autoClose={3000} />
 
 
